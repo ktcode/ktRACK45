@@ -4,35 +4,18 @@
  
 gap1 = 0.001;
 gap2 = 0.002;
-th = 1.5;
+th = 2;
 
-W = 300;
-D = 15.3;
-S = 8;
 
-translate([0, 60, 0])
-ate();
 cup();
-translate([0, 30, 0])
+translate([0, 35, 0])
 cup_back();
 translate([0, -35, 0])
 base();
+translate([0, -35-35, 0])
+base_back();
 
 
-module ate()
-{
-difference()
-{
-    union()
-    {
-        translate([-24, -10, 0]) cube([20, 20, 31]);
-    }
-    //cup
-    translate([-84/2-3, 0, 0]) rotate([0, 0, 0]) cylinder(r1=77/2, r2=84/2, h=94, $fn=1000);
-
-    cup();
-}
-}
 
 module cup()
 {
@@ -58,10 +41,10 @@ difference()
 {
     union()
     {
-        translate([-4, 0, 42]) rotate([0, -90, 0]) cylinder(r1=30/2, r2=30/2, h=3, $fn=100);
+        translate([-4, 0, 42]) rotate([0, -90, 0]) cylinder(r1=30/2, r2=30/2, h=30, $fn=100);
     }
     //cup
-    translate([-84/2-3, 0, 0]) rotate([0, 0, 0]) cylinder(r1=77/2, r2=84/2, h=94, $fn=1000);
+    #translate([-84/2-3+22, 0, 0-10]) rotate([0, -45, 0]) cylinder(r1=77/2, r2=84/2, h=94, $fn=1000);
 }
 }
 
@@ -87,5 +70,18 @@ difference()
     
     //magnet
     translate([0.5+0.9+gap1, 0, 42]) rotate([0, 90, 0]) cylinder(r=(13)/2, h=2.3+0.3, $fn=100);
+}
+}
+
+
+module base_back()
+{
+difference()
+{
+    union()
+    {
+        translate([4, 0, 42]) rotate([0, 90, 0]) cylinder(r1=30/2, r2=30/2, h=20, $fn=100);
+    }
+    #translate([5, 30/2, 0]) rotate([0, 0, -90+20]) cube([100, 100, 100]);
 }
 }
